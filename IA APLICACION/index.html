@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Buscaminas</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="app-shell">
+			<header class="app-header">
+				<div class="brand">
+					<h1>Buscaminas</h1>
+					<p class="subtitle">Clásico con diseño moderno</p>
+				</div>
+				<div class="controls">
+					<div class="control-item">
+						<label for="difficulty" class="visually-hidden">Dificultad</label>
+						<select id="difficulty" aria-label="Dificultad">
+							<option value="beginner">Principiante (9×9 · 10 minas)</option>
+							<option value="intermediate">Intermedio (16×16 · 40 minas)</option>
+							<option value="expert">Experto (16×30 · 99 minas)</option>
+						</select>
+					</div>
+					<div class="scoreboard">
+						<div id="mineCounter" class="counter" aria-live="polite">000</div>
+						<button id="resetBtn" class="face" aria-label="Reiniciar juego" title="Reiniciar"></button>
+						<div id="timer" class="counter" aria-live="polite">000</div>
+						<div id="bestTime" class="bestTime" title="Mejor tiempo">—</div>
+						<button id="soundToggle" class="sound-toggle" title="Silenciar/Activar sonido" aria-pressed="false">🔊</button>
+					</div>
+				</div>
+			</header>
+
+			<main class="main">
+				<aside class="panel">
+					<p><strong>Instrucciones</strong></p>
+					<ul>
+						<li>Click izquierdo: descubrir casilla</li>
+						<li>Click derecho: marcar/desmarcar bandera</li>
+						<li>Primera jugada segura (sin minas)</li>
+					</ul>
+					<div id="status" class="status">Estado: Listo</div>
+
+					<div class="leaderboard">
+						<h3>Mejores Tiempos</h3>
+						<ol id="leaderList">
+							<li>—</li>
+						</ol>
+						<button id="clearLeader" class="small">Borrar mejores</button>
+					</div>
+				</aside>
+
+				<section id="boardContainer" class="board-container">
+					<div id="board" class="board" role="grid" aria-label="Tablero de Buscaminas"></div>
+				</section>
+			</main>
+
+			<footer class="app-footer">
+				<small>Desarrollado — demo local</small>
+			</footer>
+		</div>
+
+		<!-- Modal de resultado -->
+		<div id="resultModal" class="modal" aria-hidden="true">
+			<div class="modal-card" role="dialog" aria-modal="true">
+				<h2 id="modalTitle">Resultado</h2>
+				<p id="modalMessage">Has ganado</p>
+				<div class="modal-actions">
+					<button id="modalRestart">Jugar otra vez</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal para registrar nombre en leaderboard -->
+		<div id="nameModal" class="modal" aria-hidden="true">
+			<div class="modal-card" role="dialog" aria-modal="true">
+				<h2 id="nameModalTitle">Nuevo mejor tiempo</h2>
+				<p id="nameModalMsg">Has logrado un lugar en el leaderboard. Introduce tu nombre:</p>
+				<input id="playerName" type="text" maxlength="12" aria-label="Nombre del jugador" placeholder="Tu nombre" />
+				<div class="modal-actions">
+					<button id="nameSubmit">Guardar</button>
+					<button id="nameCancel">Cancelar</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>
